@@ -11,7 +11,7 @@ function Dashboard() {
       setAuth(true);
       console.log(auth);
     }
-  }, []);
+  }, [auth]);
 
   if (!auth) {
     return <Navigate replace to="/dashboard" />;

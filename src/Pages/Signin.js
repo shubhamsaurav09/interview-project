@@ -51,7 +51,7 @@ function Signin() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <a href="#" id="forgot_password">
+        <a href="/" id="forgot_password">
           Forgot Password
         </a>
 
