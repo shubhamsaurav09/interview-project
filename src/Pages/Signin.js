@@ -8,16 +8,20 @@ function Signin() {
   const [password, setPassword] = useState("");
   const credentials = {
     email: "admin@propelius.tech",
-    password: "123456@",
+    password: "123",
   };
 
   const handleSignIn = (e) => {
     e.preventDefault();
     if (mail === credentials.email && password === credentials.password) {
-      sessionStorage.setItem("auth", true);
-      sessionStorage.setItem("username", mail);
+      localStorage.setItem("auth", true);
+      localStorage.setItem("username", mail);
       navigate("/dashboard");
     }
+    setPassword("");
+    document
+      .getElementById("signin_password")
+      .setAttribute("placeholder", "Enter correct password");
   };
 
   return (
@@ -45,16 +49,16 @@ function Signin() {
         </label>
         <input
           type="password"
+          id="signin_password"
           className="password"
           name="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <a href="/" id="forgot_password">
+        <Link to={"/"} id="forgot_password">
           Forgot Password
-        </a>
-
+        </Link>
         <button className="submit">Sign in</button>
         <div id="or">OR</div>
 

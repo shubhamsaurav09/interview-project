@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const [auth, setAuth] = useState(false);
-  const userName = sessionStorage.getItem("username");
+  const navigate = useNavigate();
+  const auth = JSON.parse(localStorage.getItem("auth"));
+  const userName = localStorage.getItem("username");
 
   useEffect(() => {
-    const isLogin = sessionStorage.getItem("auth");
-    if (isLogin === "true") {
-      setAuth(true);
-      console.log(auth);
+    const loggedInUser = localStorage.getItem("auth");
+    if (loggedInUser) {
+      localStorage.clear();
     }
-  }, [auth]);
+  }, []);
 
   if (!auth) {
-    return <Navigate replace to="/dashboard" />;
+    return <Navigate replace to={"/"} />;
   } else {
     return (
       <div className="dashboard">
         <p>Hello {userName}</p>
-        <Link id="logout" to={"/"}>
+        <button id="logout" onClick={() => navigate("/")}>
           Logout
-        </Link>
+        </button>
       </div>
     );
   }
